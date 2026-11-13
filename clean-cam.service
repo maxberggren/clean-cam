@@ -1,0 +1,12 @@
+[Unit]
+Description=Denoised FaceTime HD camera (/dev/video42, camera only on while in use)
+# Start before PipeWire so it sees /dev/video42 as a camera when it scans devices.
+Before=pipewire.service wireplumber.service
+
+[Service]
+ExecStart=%h/.local/bin/clean-cam
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target
